@@ -8,5 +8,8 @@ overflow: hidden;
 
 display: grid;
 grid-template-columns: repeat(4, 25%);
+grid-template-rows: 1fr 48px 48px 48px 48px 48px;
+
+
 
 `;
