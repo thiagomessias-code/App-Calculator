@@ -30,7 +30,35 @@ clearMemory() {
 }
 
 setOperation(operation) {
-  console.log(operation)
+if (this.state.current === 0){
+this.setState({operation,current: 1, clearDisplay:true})
+}else {
+  const results = operation === '='
+  const currentOperation = this.state.operation
+
+  const values = [...this.state.values]
+try {
+  values[0] = eval(`${values[0]}${currentOperation} ${values[1]
+  }`)
+  if (isNaN(values[0]) || !isFinite(values[0])) {
+    this.clearMemory()
+  return
+  }
+} catch (error) {
+  values[0] = this.state.values[0]
+}
+  
+  values[1] = 0
+
+  this.setState({
+    displayValue: values[0],
+    operation: results ? null : operation,
+    current: results ? 0: 1,
+    clearDisplay: !results,
+    values
+
+})
+}
 }
 
 addDigit(n) {
@@ -44,7 +72,11 @@ return
   this.setState({displayValue, clearDisplay: false})
 
   if(n !== '.') {
-    const i = this.state.current 
+    const i = this.state.current
+    const newValue = parseFloat(displayValue) 
+    const values = [...this.state.values]
+    values[i] = newValue
+    this.setState({values})
   }
 }
 

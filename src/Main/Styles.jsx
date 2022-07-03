@@ -9,7 +9,7 @@ overflow: hidden;
 display: grid;
 grid-template-columns: repeat(4, 25%);
 grid-template-rows: 1fr 48px 48px 48px 48px 48px;
-
+box-shadow: 1px 1px 5px #0000007a;
 
 
 `;
